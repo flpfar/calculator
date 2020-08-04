@@ -18,7 +18,7 @@ const calculate = (calculator, buttonName) => {
     total = null;
     next = null;
     operation = null;
-  } else if (isSign) {
+  } else if (isSign && next) {
     next = (parseFloat(next) * (-1)).toString();
   } else if (isPercent && next) {
     next = (parseFloat(next) / 100).toString();
@@ -26,9 +26,9 @@ const calculate = (calculator, buttonName) => {
     if (next) {
       if (total) {
         const result = operate(total, next, operation);
-        total = null;
-        next = result && result.toString();
-        operation = null;
+        total = result && result.toString();
+        next = null;
+        operation = buttonName;
       } else {
         total = next;
         next = null;
