@@ -20,22 +20,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { total, next, operation } = this.state;
-    let result;
-
-    if (total) {
-      if (next) {
-        result = `${total}${operation}${next}`;
-      } else {
-        result = `${total}${operation}`;
-      }
-    } else {
-      result = operation ? `${next}${operation}` : next;
-    }
+    const { total, next } = this.state;
 
     return (
       <div className="calculator">
-        <Display result={result} />
+        <Display result={next || total || '0'} />
         <ButtonPanel clickHandler={this.handleClick} />
       </div>
     );
